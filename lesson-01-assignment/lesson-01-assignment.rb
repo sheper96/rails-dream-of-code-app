@@ -1,8 +1,8 @@
 #1
 
 coding_class = CodingClass.find_by({ title: 'Intro to Programming' })
-enrollments = Enrollment.where(course_id: coding_class.id)
-students_ids = enrollments.where(course_id: coding_class.id).pluck(:student_id)
+course_ids = Course.where(coding_class_id: coding_class.id).pluck(:id)
+students_ids = Enrollment.where(course_id: course_ids).pluck(:student_id)
 students = Student.where(id: students_ids)
 students.limit(2).each do |st|
   puts "<#{st.id}>, <#{st.email}>"
