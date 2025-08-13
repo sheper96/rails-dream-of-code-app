@@ -1,16 +1,19 @@
 #1
 
-Course.create(coding_class_id: "1", trimester_id: "8", max_enrollment: "25")
-Course.create(coding_class_id: "2", trimester_id: "8", max_enrollment: "25")
-Course.create(coding_class_id: "3", trimester_id: "8", max_enrollment: "25")
-Course.create(coding_class_id: "4", trimester_id: "8", max_enrollment: "25")
-Course.create(coding_class_id: "5", trimester_id: "8", max_enrollment: "25")
+(1..5).each do |id|
+Course.create(
+coding_class_id: id,
+trimester_id: 8,
+max_enrollment: 25
+)
+end
 
 #2
 
 Student.create(first_name: "Val", last_name: "Lyzhyn", email: "val@test.com")
 student_id = Student.last.id
-Enrollment.create(course_id: "1", student_id: student_id)
+course = trimester = Trimester.find_by(year: 2026, term: "Spring")
+Enrollment.create(course_id: course.id, student_id: student_id)
 enrollment_id = Enrollment.last.id
 mentor_id = MentorEnrollmentAssignment.group(:mentor_id).having("COUNT(enrollment_id) < 3").pluck(:mentor_id).first
 MentorEnrollmentAssignment.create(mentor_id: mentor_id, enrollment_id: enrollment_id)
