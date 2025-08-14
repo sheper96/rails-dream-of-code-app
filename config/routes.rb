@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/trimesters", to: "trimesters#index"
+  get "/trimesters/:id", to: "trimesters#show"
   resources :students
   resources :mentors
   resources :enrollments
