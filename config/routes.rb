@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get "/dashboard", to: "admin_dashboard#index"
   get "/trimesters", to: "trimesters#index"
   get "/trimesters/:id", to: "trimesters#show"
+  get "/courses", to: "courses#index"
   resources :students
   resources :mentors
   resources :enrollments
