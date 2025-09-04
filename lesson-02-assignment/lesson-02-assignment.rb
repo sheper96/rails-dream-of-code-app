@@ -1,6 +1,6 @@
 #1
 
-(1..5).each do |id|
+CodingClass.all.each do |coding_class|
 Course.create(
 coding_class_id: id,
 trimester_id: 8,
@@ -63,4 +63,5 @@ quantity
 
 One user can have multiple orders
 Restaurant has many MenuItems 
+
 One order has multiple OrderItems
