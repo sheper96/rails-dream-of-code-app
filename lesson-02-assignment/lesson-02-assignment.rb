@@ -12,7 +12,9 @@ end
 
 Student.create(first_name: "Val", last_name: "Lyzhyn", email: "val@test.com")
 student_id = Student.last.id
-course = trimester = Trimester.find_by(year: 2026, term: "Spring")
+trimester = Trimester.find_by(year: 2026, term: "Spring")
+coding_class = CodingClass.find_by(title: "Intro to Programming")
+course = Course.find_by(coding_class_id: coding_class.id , trimester_id: trimester.id )
 Enrollment.create(course_id: course.id, student_id: student_id)
 enrollment_id = Enrollment.last.id
 mentor_id = MentorEnrollmentAssignment.group(:mentor_id).having("COUNT(enrollment_id) < 3").pluck(:mentor_id).first
