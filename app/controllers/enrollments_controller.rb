@@ -1,5 +1,7 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: %i[ show edit update destroy ]
+  before_action :set_enrollment ,only: %i[ show edit update destroy ]
+  before_action :require_admin
+
 
   # GET /enrollments or /enrollments.json
   def index
