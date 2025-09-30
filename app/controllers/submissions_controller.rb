@@ -1,4 +1,7 @@
 class SubmissionsController < ApplicationController
+  before_action :require_student,  only: %i[ create ]
+  before_action :require_mentor,  only: %i[ edit update ]
+
   # GET /submissions/new
   def new
     @course = Course.find(params[:course_id])
