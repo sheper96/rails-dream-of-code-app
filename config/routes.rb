@@ -1,11 +1,25 @@
 Rails.application.routes.draw do
+  get "/dashboard", to: "admin_dashboard#index"
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+  resources :trimesters, only: [:edit, :update, :index, :show]
   resources :students
   resources :mentors
   resources :enrollments
   resources :mentor_enrollment_assignments
   resources :lessons
-  resources :courses
+ resources :courses do
+    resources :submissions
+  end
   resources :coding_classes
+   namespace :api do
+    namespace :v1 do
+      get '/courses', to: 'courses#index'
+      get '/courses/:course_id/enrollments', to: 'enrollments#index'
+      get '/courses/:course_id/enrollments/static', to: 'enrollments#static'
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

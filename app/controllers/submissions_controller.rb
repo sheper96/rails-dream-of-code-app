@@ -1,10 +1,13 @@
 class SubmissionsController < ApplicationController
+  before_action :require_student,  only: %i[ create ]
+  before_action :require_mentor,  only: %i[ edit update ]
+
   # GET /submissions/new
   def new
     @course = Course.find(params[:course_id])
     @submission = Submission.new
-    @enrollments # TODO: What set of enrollments should be listed in the dropdown?
-    @lessons # TODO: What set of lessons should be listed in the dropdown?
+    @enrollments  = Enrollment.where(course_id: params[:course_id]) # TODO: What set of enrollments should be listed in the dropdown?
+    @lessons = Lesson.where(course_id: params[:course_id]) # TODO: What set of lessons should be listed in the dropdown?
   end
 
   def create

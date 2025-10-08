@@ -11,16 +11,15 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :coding_class_id, style: "display: block" %>
-    <%= form.text_field :coding_class_id %>
+   <div class="form-group">
+    <%= form.label :coding_class, {}, { class: 'form-text' } %>
+    <%= form.select :coding_class_id, options_from_collection_for_select(@coding_class, :id, :title), { prompt: 'Select coding class' }, { class: 'form-control' } %>
   </div>
-
-  <div>
-    <%= form.label :trimester_id, style: "display: block" %>
-    <%= form.text_field :trimester_id %>
+   <div class="form-group">
+    <%= form.label :trimester, {}, { class: 'form-text' } %>
+    <%= form.select :trimester_id, options_from_collection_for_select(@trimester, :id, :tr), { prompt: 'Select trimester' }, { class: 'form-control' } %>
   </div>
-
+  
   <div>
     <%= form.label :max_enrollment, style: "display: block" %>
     <%= form.number_field :max_enrollment %>
