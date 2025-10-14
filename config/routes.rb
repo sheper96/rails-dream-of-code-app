@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get '/courses', to: 'courses#index'
       get '/courses/:course_id/enrollments', to: 'enrollments#index'
       get '/courses/:course_id/enrollments/static', to: 'enrollments#static'
+      post '/students', to: 'students#create'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
